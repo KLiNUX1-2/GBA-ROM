@@ -1,0 +1,35 @@
+{
+  "name": "gba-nds-core",
+  "version": "0.1.0",
+  "description": "A JavaScript-based Game Boy Advance and Nintendo DS emulation core prototype.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "gba",
+    "nds",
+    "game-boy-advance",
+    "nintendo-ds",
+    "emulator",
+    "emulation",
+    "arm7",
+    "arm9",
+    "javascript"
+  ],
+  "license": "BSL-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KLiNUX1-2/GBA-ROM.git",
+    "directory": "gba-nds-core"
+  },
+  "bugs": {
+    "url": "https://github.com/KLiNUX1-2/GBA-ROM/issues"
+  },
+  "homepage": "https://github.com/KLiNUX1-2/GBA-ROM",
+  "engines": {
+    "node": ">=18"
+  }
+}
