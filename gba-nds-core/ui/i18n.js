@@ -110,15 +110,19 @@ const translations = {
     }
 };
 
+const savedLanguage =
+    localStorage.getItem("gba-nds-language");
+
 let currentLanguage =
-    localStorage.getItem("gba-nds-language") || "tr";
+    translations[savedLanguage]
+        ? savedLanguage
+        : "tr";
 
 export function getLanguage() {
     return currentLanguage;
 }
 
 export function setLanguage(language) {
-
     if (!translations[language]) {
         language = "tr";
     }
@@ -132,9 +136,11 @@ export function setLanguage(language) {
 }
 
 export function t(key) {
-    return translations[currentLanguage][key]
-        ?? translations.tr[key]
-        ?? key;
+    return (
+        translations[currentLanguage]?.[key] ??
+        translations.tr[key] ??
+        key
+    );
 }
 
 export function availableLanguages() {
