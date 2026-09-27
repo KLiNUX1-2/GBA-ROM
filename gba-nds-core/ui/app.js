@@ -55,6 +55,15 @@ gbaButton.addEventListener("click", async () => {
     }
 });
 
+import { GBACore } from "../gba/gba.js";
+import { NDSCore } from "../nds/nds.js";
+
+import {
+    t,
+    getLanguage,
+    setLanguage
+} from "./i18n.js";
+
 
 ndsButton.addEventListener("click", async () => {
 
