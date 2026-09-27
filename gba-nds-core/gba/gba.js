@@ -3,6 +3,7 @@ import { GBAMemory } from "./memory.js";
 import { GBACartridge } from "./cartridge.js";
 
 export class GBACore {
+
     constructor() {
         this.cpu = new GBA_CPU();
         this.memory = new GBAMemory();
@@ -10,6 +11,7 @@ export class GBACore {
     }
 
     load(data) {
+
         this.cartridge.load(data);
         this.cpu.reset();
 
