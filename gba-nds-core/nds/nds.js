@@ -4,18 +4,27 @@ import { NDSMemory } from "./memory.js";
 import { NDSCartridge } from "./cartridge.js";
 
 export class NDSCore {
+
     constructor() {
+
         this.arm9 = new ARM9();
         this.arm7 = new ARM7();
-        this.memory = new NDSMemory();
-        this.cartridge = new NDSCartridge();
+
+        this.memory =
+            new NDSMemory();
+
+        this.cartridge =
+            new NDSCartridge();
     }
 
+
     load(data) {
+
         this.cartridge.load(data);
 
         this.arm9.reset();
         this.arm7.reset();
+
 
         return [
             "=== NDS CORE ===",
