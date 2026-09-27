@@ -2,169 +2,115 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
 
-    <title>GBA + NDS Core</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <meta
+        name="description"
+        content="GBA and Nintendo DS emulator core"
+    >
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: #101114;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-        }
+    <title>GBA-NDS Core</title>
 
-        header {
-            padding: 24px 16px;
-            text-align: center;
-            background: #181a20;
-            border-bottom: 1px solid #292c35;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
-
-        header p {
-            margin: 8px 0 0;
-            color: #aeb4c0;
-        }
-
-        main {
-            width: min(700px, 94%);
-            margin: 25px auto;
-        }
-
-        .card {
-            background: #181a20;
-            border: 1px solid #292c35;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 18px;
-        }
-
-        .card h2 {
-            margin-top: 0;
-        }
-
-        input[type="file"] {
-            width: 100%;
-            margin: 12px 0;
-            padding: 10px;
-            background: #101114;
-            color: white;
-            border-radius: 8px;
-        }
-
-        button {
-            width: 100%;
-            padding: 13px;
-            border: 0;
-            border-radius: 9px;
-            background: #4d7cff;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:active {
-            transform: scale(.98);
-        }
-
-        canvas {
-            display: block;
-            width: 100%;
-            max-width: 480px;
-            height: auto;
-            margin: 20px auto;
-            background: #000;
-            image-rendering: pixelated;
-            border: 3px solid #292c35;
-            border-radius: 8px;
-        }
-
-        #info {
-            background: #0b0c0f;
-            border-radius: 10px;
-            padding: 15px;
-            min-height: 100px;
-            white-space: pre-wrap;
-            overflow-wrap: anywhere;
-            font-family: monospace;
-        }
-
-        .status {
-            text-align: center;
-            color: #aeb4c0;
-            margin-bottom: 15px;
-        }
-
-        footer {
-            text-align: center;
-            color: #777e8c;
-            padding: 20px;
-            font-size: 13px;
-        }
-    </style>
+    <link rel="stylesheet" href="./ui/style.css">
 </head>
 
 <body>
 
-<header>
-    <h1>🎮 GBA + NDS Core</h1>
-    <p>JavaScript Emulator Core Prototype</p>
-</header>
+<header class="header">
 
-<main>
+    <div class="brand">
+        <img
+            src="./assets/logo.png"
+            alt="GBA-NDS Core"
+        >
 
-    <div class="status" id="status">
-        Hazır — ROM seçebilirsiniz.
+        <div>
+            <h1>GBA-NDS Core</h1>
+            <span>Emulation Core Prototype</span>
+        </div>
     </div>
 
-    <!-- GBA -->
+</header>
 
-    <section class="card">
-        <h2>🟦 Game Boy Advance</h2>
 
-        <input
-            id="gbaFile"
-            type="file"
-            accept=".gba"
-        >
+<main class="container">
 
-        <button id="gbaButton">
-            GBA ROM Yükle
-        </button>
+    <section class="hero">
+
+        <h2>GBA & Nintendo DS</h2>
+
+        <p>
+            JavaScript tabanlı emülasyon çekirdeği.
+        </p>
+
     </section>
 
-    <!-- NDS -->
 
-    <section class="card">
-        <h2>🟥 Nintendo DS</h2>
+    <section class="console-grid">
 
-        <input
-            id="ndsFile"
-            type="file"
-            accept=".nds"
-        >
+        <!-- GBA -->
 
-        <button id="ndsButton">
-            NDS ROM Yükle
-        </button>
+        <article class="console-card">
+
+            <div class="console-icon">
+                GBA
+            </div>
+
+            <h3>Game Boy Advance</h3>
+
+            <p>
+                ARM7TDMI tabanlı GBA çekirdeği.
+            </p>
+
+            <input
+                id="gba-rom"
+                type="file"
+                accept=".gba"
+            >
+
+            <button id="gba-load">
+                ROM Yükle
+            </button>
+
+        </article>
+
+
+        <!-- NDS -->
+
+        <article class="console-card">
+
+            <div class="console-icon">
+                NDS
+            </div>
+
+            <h3>Nintendo DS</h3>
+
+            <p>
+                ARM9 + ARM7 tabanlı NDS çekirdeği.
+            </p>
+
+            <input
+                id="nds-rom"
+                type="file"
+                accept=".nds"
+            >
+
+            <button id="nds-load">
+                ROM Yükle
+            </button>
+
+        </article>
+
     </section>
 
-    <!-- SCREEN -->
 
-    <section class="card">
+    <section class="emulator">
 
-        <h2>🖥️ Ekran</h2>
+        <h2>Emulator</h2>
 
         <canvas
             id="screen"
@@ -172,162 +118,36 @@
             height="320">
         </canvas>
 
+        <div id="status">
+            Ready
+        </div>
+
     </section>
 
-    <!-- INFO -->
 
-    <section class="card">
+    <section class="information">
 
-        <h2>📋 ROM Bilgisi</h2>
+        <h2>ROM Information</h2>
 
-        <div id="info">
-ROM bekleniyor...
-        </div>
+        <pre id="rom-info">No ROM loaded.</pre>
 
     </section>
 
 </main>
 
+
 <footer>
-    GBA + NDS Core Prototype
-    <br>
-    Boost Software License 1.0
+
+    <p>
+        GBA-NDS Core
+        •
+        Boost Software License 1.0
+    </p>
+
 </footer>
 
 
-<script type="module">
-
-import { GBACore }
-    from "./gba/gba.js";
-
-import { NDSCore }
-    from "./nds/nds.js";
-
-
-const gba = new GBACore();
-const nds = new NDSCore();
-
-const gbaInput =
-    document.getElementById("gbaFile");
-
-const ndsInput =
-    document.getElementById("ndsFile");
-
-const gbaButton =
-    document.getElementById("gbaButton");
-
-const ndsButton =
-    document.getElementById("ndsButton");
-
-const info =
-    document.getElementById("info");
-
-const status =
-    document.getElementById("status");
-
-
-// --------------------
-// GBA
-// --------------------
-
-gbaButton.addEventListener("click", async () => {
-
-    const file = gbaInput.files[0];
-
-    if (!file) {
-        alert("Önce bir .gba dosyası seç.");
-        return;
-    }
-
-    try {
-
-        status.textContent =
-            "GBA ROM yükleniyor...";
-
-        const buffer =
-            await file.arrayBuffer();
-
-        const data =
-            new Uint8Array(buffer);
-
-        const result =
-            gba.load(data);
-
-        info.textContent =
-            result;
-
-        status.textContent =
-            "✅ GBA ROM yüklendi.";
-
-    } catch (error) {
-
-        console.error(error);
-
-        status.textContent =
-            "❌ GBA ROM yüklenemedi.";
-
-        info.textContent =
-            error.toString();
-    }
-
-});
-
-
-// --------------------
-// NDS
-// --------------------
-
-ndsButton.addEventListener("click", async () => {
-
-    const file = ndsInput.files[0];
-
-    if (!file) {
-        alert("Önce bir .nds dosyası seç.");
-        return;
-    }
-
-    try {
-
-        status.textContent =
-            "NDS ROM yükleniyor...";
-
-        const buffer =
-            await file.arrayBuffer();
-
-        const data =
-            new Uint8Array(buffer);
-
-        const result =
-            nds.load(data);
-
-        info.textContent =
-            result;
-
-        status.textContent =
-            "✅ NDS ROM yüklendi.";
-
-    } catch (error) {
-
-        console.error(error);
-
-        status.textContent =
-            "❌ NDS ROM yüklenemedi.";
-
-        info.textContent =
-            error.toString();
-    }
-
-});
-
-</script>
+<script type="module" src="./ui/app.js"></script>
 
 </body>
 </html>
-
-GitHub'da dosyanın konumu tam olarak:
-
-gba-nds-core/index.html
-
-olmalı.
-
-GitHub Pages'i açtığında bu sayfa "./gba/gba.js" ve "./nds/nds.js" dosyalarını otomatik olarak çağırır.
